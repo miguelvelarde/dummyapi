@@ -1,0 +1,140 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Application. This template is partially managed by
+  Amazon.Lambda.Annotations (v1.6.1.0).
+Resources:
+  DummyApiFunctionsGetPostsGenerated:
+    Type: AWS::Serverless::Function
+    Metadata:
+      SamResourceId: DummyApiFunctionsGetPostsGenerated
+      SyncedEventProperties:
+        RootGet:
+        - Path
+        - Method
+      SyncedEvents:
+      - RootGet
+      Tool: Amazon.Lambda.Annotations
+    Properties:
+      Runtime: dotnet8
+      CodeUri: DummyApiFunctionsGetPostsGenerated
+      MemorySize: 512
+      Timeout: 30
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      PackageType: Zip
+      Handler: DummyApi::DummyApi.Functions_GetPosts_Generated::GetPosts
+      Events:
+        RootGet:
+          Type: HttpApi
+          Properties:
+            Path: /posts
+            Method: GET
+  DummyApiFunctionsGetPostByIdGenerated:
+    Type: AWS::Serverless::Function
+    Metadata:
+      SamResourceId: DummyApiFunctionsGetPostByIdGenerated
+      SyncedEventProperties:
+        RootGet:
+        - Path
+        - Method
+      SyncedEvents:
+      - RootGet
+      Tool: Amazon.Lambda.Annotations
+    Properties:
+      Runtime: dotnet8
+      CodeUri: DummyApiFunctionsGetPostByIdGenerated
+      MemorySize: 512
+      Timeout: 30
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      PackageType: Zip
+      Handler: DummyApi::DummyApi.Functions_GetPostById_Generated::GetPostById
+      Events:
+        RootGet:
+          Type: HttpApi
+          Properties:
+            Path: /posts/{id}
+            Method: GET
+  DummyApiFunctionsDeletePostGenerated:
+    Type: AWS::Serverless::Function
+    Metadata:
+      SamResourceId: DummyApiFunctionsDeletePostGenerated
+      SyncedEventProperties:
+        RootDelete:
+        - Path
+        - Method
+      SyncedEvents:
+      - RootDelete
+      Tool: Amazon.Lambda.Annotations
+    Properties:
+      Runtime: dotnet8
+      CodeUri: DummyApiFunctionsDeletePostGenerated
+      MemorySize: 512
+      Timeout: 30
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      PackageType: Zip
+      Handler: DummyApi::DummyApi.Functions_DeletePost_Generated::DeletePost
+      Events:
+        RootDelete:
+          Type: HttpApi
+          Properties:
+            Path: /posts/{id}
+            Method: DELETE
+  DummyApiFunctionsCreatePostGenerated:
+    Type: AWS::Serverless::Function
+    Metadata:
+      SamResourceId: DummyApiFunctionsCreatePostGenerated
+      SyncedEventProperties:
+        RootPost:
+        - Path
+        - Method
+      SyncedEvents:
+      - RootPost
+      Tool: Amazon.Lambda.Annotations
+    Properties:
+      Runtime: dotnet8
+      CodeUri: DummyApiFunctionsCreatePostGenerated
+      MemorySize: 512
+      Timeout: 30
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      PackageType: Zip
+      Handler: DummyApi::DummyApi.Functions_CreatePost_Generated::CreatePost
+      Events:
+        RootPost:
+          Type: HttpApi
+          Properties:
+            Path: /posts
+            Method: POST
+  DummyApiFunctionsUpdatePostGenerated:
+    Type: AWS::Serverless::Function
+    Metadata:
+      SamResourceId: DummyApiFunctionsUpdatePostGenerated
+      SyncedEventProperties:
+        RootPut:
+        - Path
+        - Method
+      SyncedEvents:
+      - RootPut
+      Tool: Amazon.Lambda.Annotations
+    Properties:
+      Runtime: dotnet8
+      CodeUri: DummyApiFunctionsUpdatePostGenerated
+      MemorySize: 512
+      Timeout: 30
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      PackageType: Zip
+      Handler: DummyApi::DummyApi.Functions_UpdatePost_Generated::UpdatePost
+      Events:
+        RootPut:
+          Type: HttpApi
+          Properties:
+            Path: /posts/{postId}
+            Method: PUT
+Outputs:
+  ApiURL:
+    Description: API endpoint URL for Prod environment
+    Value:
+      Fn::Sub: https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/
